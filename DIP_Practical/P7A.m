@@ -3,27 +3,37 @@
 clc;
 clear;
 close all;
-i = imread("DIP-images\cameraman.jpeg");
+i = imread("DIP-images/cameraman.jpeg");
 gray=rgb2gray(i);
 
 [x,y]=size(gray);
 
+fprintf("Image has Dimensions of\n");
+fprintf("Row:- %d\n",x);
+fprintf("Column:- %d\n\n",y);
 
 
-row=input("Enter Row number:- ");
-col=input("Enter Column number:- ");
+r=input("Enter Row number:- ");
+c=input("Enter Column number:- ");
 
-fprintf("Current Pixel value at (%d,%d): %d\n",row,col,gray(row,col));
-
-origi=[row,col];
-up = [row,col-1];
-down=[row,col+1];
-right=[row+1,col];
-left=[row-1,col];
+if r < 1 || r > x || c < 1 || c > y
+    fprintf("Error ! Entered values are out of image bound.\n");
+    return;
+end
 
 
+fprintf("Current Pixel value at (%d,%d): %d\n",r,c,gray(r,c));
 
-fprintf("up neighbour:- %d\n",gray(row,col-1));
-fprintf("Down nighbour:- %d\n",gray(row,col+1));
-fprintf("Right neighbour:- %d\n",gray(row+1,col));
-fprintf("Left neighbour:- %d\n",gray(row-1,col));
+origi=[r,c];
+up = [r,c-1];
+down=[r,c+1];
+right=[r+1,c];
+left=[r-1,c];
+
+
+fprintf("\nfour neighbour:- \n");
+
+fprintf("Top:    %d\n",gray(r,c-1));
+fprintf("Bottom: %d\n",gray(r,c+1));
+fprintf("Right:  %d\n",gray(r+1,c));
+fprintf("Left:   %d\n",gray(r-1,c));
